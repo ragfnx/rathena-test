@@ -14,7 +14,7 @@ spec:
     - name: {{ .service.name }}
       port: {{ .service.port }}
       protocol: {{ .service.protocol }}
-      targetPort: {{ .service.port }}
+      targetPort: {{ .service.name }}
       nodePort: null
     {{- end }}
   selector:
