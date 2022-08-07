@@ -1,7 +1,7 @@
 mariadb:
   enabled: true
   global:
-    storageClass: vultr-block-storage-hdd
+    storageClass: vultr-block-storage-hdd-retain
   fullnameOverride: mariadb
 
 replicaCount: 1
