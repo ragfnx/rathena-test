@@ -14,7 +14,6 @@ spec:
     - port: {{ .service.port }}
       targetPort: {{ .service.name }}
       protocol: {{ .service.protocol }}
-      name: {{ .service.name }}
     {{- end }}
   selector:
     app: {{ template "rathena.name" . }}
