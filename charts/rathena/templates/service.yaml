@@ -12,8 +12,9 @@ spec:
   ports:
     {{- range $key, $val := .Values.containers }}
     - port: {{ .service.port }}
-      targetPort: {{ .service.name }}
+      targetPort: {{ .service.port }}
       protocol: {{ .service.protocol }}
+      name: {{ .service.name }}
     {{- end }}
   selector:
     app: {{ template "rathena.name" . }}
