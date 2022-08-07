@@ -50,7 +50,7 @@ containers:
   map-server:
     service:
       name: map-port
-      port: 6900
+      port: 5121
       protocol: TCP
     resources:
       requests:
