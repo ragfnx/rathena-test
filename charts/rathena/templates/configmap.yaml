@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "rathena.fullname" . }}-configmap
+data:
+  char_conf.txt: |-
+    server_name: {{ template "rathena.fullname" . }}
+    wisp_server_name: {{ template "rathena.fullname" . }}
+    //login_ip: login-server.rathena.svc.cluster.local
+    //login_port: {{ .Values.containers.login-server.service.port }}
+    //char_ip: login-server.rathena.svc.cluster.local
+    //char_port: {{ .Values.containers.char-server.service.port }}
+    //bind_ip: rathena.opensrv.cloud
+
+  login_conf.txt: |-
+    //login_port: {{ .Values.containers.login-server.service.port }}
+    //bind_ip: rathena.opensrv.cloud
+
+  map_conf.txt: |-
+    //char_ip: ${PUBLIC_IP}
+    //char_port: ${CHAR_PORT}
+    //map_ip: ${PUBLIC_IP}
+    //map_port: ${MAP_PORT}
+    //bind_ip: ${MAP_BIND_IP}
+
+  inter_conf.txt: |-
+    // MySQL Login server
+    login_server_ip: mariadb.rathena.svc.cluster.local
+    login_server_port: 3306
+    login_server_id: {{ .Values.mariadb.auth.username }}
+    login_server_pw: {{ .Values.mariadb.auth.password }}
+    login_server_db: {{ .Values.mariadb.auth.database }}
+
+    ipban_db_ip: mariadb.rathena.svc.cluster.local
+    ipban_db_port: 3306
+    ipban_db_id: {{ .Values.mariadb.auth.username }}
+    ipban_db_pw: {{ .Values.mariadb.auth.password }}
+    ipban_db_db: {{ .Values.mariadb.auth.database }}
+
+    // MySQL Character server
+    char_server_ip: mariadb.rathena.svc.cluster.local
+    char_server_port: 3306
+    char_server_id: {{ .Values.mariadb.auth.username }}
+    char_server_pw: {{ .Values.mariadb.auth.password }}
+    char_server_db: {{ .Values.mariadb.auth.database }}
+
+    // MySQL Map Server
+    map_server_ip: mariadb.rathena.svc.cluster.local
+    map_server_port: 3306
+    map_server_id: {{ .Values.mariadb.auth.username }}
+    map_server_pw: {{ .Values.mariadb.auth.password }}
+    map_server_db: {{ .Values.mariadb.auth.database }}
+
+    // MySQL Log Database
+    log_db_ip: mariadb.rathena.svc.cluster.local
+    log_db_port: 3306
+    log_db_id: {{ .Values.mariadb.auth.username }}
+    log_db_pw: {{ .Values.mariadb.auth.password }}
+    log_db_db: {{ .Values.mariadb.auth.database }}

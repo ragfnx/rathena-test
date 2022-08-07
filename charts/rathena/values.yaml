@@ -3,6 +3,11 @@ mariadb:
   global:
     storageClass: vultr-block-storage-hdd
   fullnameOverride: mariadb
+  auth:
+    rootPassword: Aq1Sw2De3
+    database: ra_rag
+    username: raguser
+    password: ragpass
   primary:
     persistence:
       size: 40Gi
