@@ -1,8 +1,11 @@
 mariadb:
   enabled: true
   global:
-    storageClass: vultr-block-storage-hdd-retain
+    storageClass: vultr-block-storage-hdd
   fullnameOverride: mariadb
+  primary:
+    persistence:
+      size: 10Gi
 
 replicaCount: 1
 
