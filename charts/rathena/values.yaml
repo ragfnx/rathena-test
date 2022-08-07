@@ -1,3 +1,7 @@
+mariadb:
+  enabled:
+  fullnameOverride: "mariadb"
+
 replicaCount: 1
 
 image:
