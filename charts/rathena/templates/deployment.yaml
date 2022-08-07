@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "rathena.fullname" . }}
+  labels:
+    app: {{ template "rathena.name" . }}
+    chart: {{ template "rathena.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: {{ template "rathena.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "rathena.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        {{- range $key, $val := .Values.containers }}
+        - name: {{ $key }}
+          image: "{{ $.Values.image.repository }}:{{ $.Chart.AppVersion }}"
+          imagePullPolicy: {{ $.Values.image.pullPolicy }}
+          args: [ "./entrypoint.sh", "{{ $key }}" ]
+          command: [ "sh", "-c" ]
+          ports:
+            - name: {{ .service.name }}
+              containerPort: {{ .service.port }}
+              protocol: {{ .service.protocol }}
+          readinessProbe:
+            tcpSocket:
+              port: {{ .service.name }}
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          livenessProbe:
+            tcpSocket:
+              port: {{ .service.name }}
+            initialDelaySeconds: 25
+            periodSeconds: 30
+          resources:
+            requests:
+              memory: {{ .resources.requests.memory }}
+              cpu: {{ .resources.requests.cpu }}
+            limits:
+              memory: {{ .resources.limits.memory }}
+              cpu: {{ .resources.limits.memory }}
+        {{- end }}

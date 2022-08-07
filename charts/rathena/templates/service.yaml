@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "rathena.fullname" . }}
+  labels:
+    app: {{ template "rathena.name" . }}
+    chart: {{ template "rathena.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    {{- range $key, $val := .Values.containers }}
+    - port: {{ .service.port }}
+      targetPort: {{ .service.name }}
+      protocol: {{ .service.protocol }}
+      name: {{ $key}}
+    {{- end }}
+  selector:
+    app: {{ template "rathena.name" . }}
+    release: {{ .Release.Name }}
