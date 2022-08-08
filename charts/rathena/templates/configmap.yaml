@@ -6,22 +6,22 @@ data:
   char_conf.txt: |-
     server_name: {{ template "rathena.fullname" . }}
     wisp_server_name: {{ template "rathena.fullname" . }}
-    //login_ip: login-server.rathena.svc.cluster.local
-    //login_port: {{ .Values.containers.login-server.service.port }}
-    //char_ip: login-server.rathena.svc.cluster.local
-    //char_port: {{ .Values.containers.char-server.service.port }}
-    //bind_ip: rathena.opensrv.cloud
+    //login_ip: 
+    //login_port: 
+    //char_ip: 
+    //char_port: 
+    bind_ip: rathena.rathena.svc.cluster.local
 
   login_conf.txt: |-
-    //login_port: {{ .Values.containers.login-server.service.port }}
-    //bind_ip: rathena.opensrv.cloud
+    //login_port: 
+    bind_ip: rathena.rathena.svc.cluster.local
 
   map_conf.txt: |-
-    //char_ip: ${PUBLIC_IP}
-    //char_port: ${CHAR_PORT}
-    //map_ip: ${PUBLIC_IP}
-    //map_port: ${MAP_PORT}
-    //bind_ip: ${MAP_BIND_IP}
+    //char_ip: 
+    //char_port: 
+    //map_ip: 
+    //map_port: 
+    bind_ip: rathena.rathena.svc.cluster.local
 
   inter_conf.txt: |-
     // MySQL Login server

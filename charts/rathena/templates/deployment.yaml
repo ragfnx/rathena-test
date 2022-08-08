@@ -49,11 +49,12 @@ spec:
               memory: {{ .resources.limits.memory }}
               cpu: {{ .resources.limits.memory }}
           volumeMounts:
-          - name: config-volume
-            mountPath: /rathena/conf/import
+          - name: import
+            mountPath: "/rathena/conf/import"
+            readOnly: true
         {{- end }}
-        volumes:
-          - name: config-volume
-            configMap:
-              name: {{ template "rathena.fullname" . }}-configmap
+      volumes:
+      - name: import
+        configMap:
+          name: rathena
         restartPolicy: Never
