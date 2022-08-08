@@ -56,4 +56,4 @@ spec:
       volumes:
       - name: import
         configMap:
-          name: rathena
+          name: {{ template "rathena.fullname" . }}-configmap
