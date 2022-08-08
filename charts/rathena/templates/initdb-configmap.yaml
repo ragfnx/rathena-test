@@ -3,8 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ template "rathena.fullname" . }}-initdb-configmap
 data:
-  main.sql: |-
-{{ .Files.Get "config/main.sql" | nindent 4 }}
-
-  logs.sql: |-
-{{ .Files.Get "config/logs.sql" | nindent 4 }}
+{{ range $path, $_ :=  .Files.Glob  "database/**" }}
+{{ $path | trimPrefix "database/" | nindent 2 }}: |-
+{{ $.Files.Get $path | nindent 4 }}
+{{ end }}

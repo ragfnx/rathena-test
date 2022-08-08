@@ -10,18 +10,18 @@ data:
     login_port: 6900 
     char_ip: char-server.rathena.svc.cluster.local
     char_port: 6121
-    bind_ip: game.rathena.svc.cluster.local
+    //bind_ip: game.rathena.svc.cluster.local
 
   login_conf.txt: |-
     login_port: 6900
-    bind_ip: game.rathena.svc.cluster.local
+    //bind_ip: game.rathena.svc.cluster.local
 
   map_conf.txt: |-
-    char_ip: chart-server.rathena.svc.cluster.local
+    char_ip: char-server.rathena.svc.cluster.local
     char_port: 6121
     map_ip: map-server.rathena.svc.cluster.local
     map_port: 5121
-    bind_ip: game.rathena.svc.cluster.local
+    //bind_ip: game.rathena.svc.cluster.local
 
   inter_conf.txt: |-
     // MySQL Login server
@@ -57,3 +57,8 @@ data:
     log_db_id: {{ .Values.mariadb.auth.username }}
     log_db_pw: {{ .Values.mariadb.auth.password }}
     log_db_db: {{ .Values.mariadb.auth.database }}
+
+{{ range $path, $_ :=  .Files.Glob  "config/**" }}
+{{ $path | trimPrefix "config/" | nindent 2 }}: |-
+{{ $.Files.Get $path | nindent 4 }}
+{{ end }}
