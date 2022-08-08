@@ -21,7 +21,7 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
 
 containers:
   # Login Server Container
