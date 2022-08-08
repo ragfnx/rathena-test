@@ -3,6 +3,7 @@ mariadb:
   global:
     storageClass: vultr-block-storage-hdd
   fullnameOverride: mariadb
+  initdbScriptsConfigMap: rathena-initdb-configmap
   auth:
     rootPassword: Aq1Sw2De3
     database: ra_rag

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "rathena.fullname" . }}-initdb-configmap
+data:
+  main.sql: |-
+{{ .Files.Get "config/main.sql" | nindent 4 }}
+
+  logs.sql: |-
+{{ .Files.Get "config/logs.sql" | nindent 4 }}
