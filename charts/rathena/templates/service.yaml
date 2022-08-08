@@ -1,7 +1,8 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "rathena.fullname" . }}
+  name: game
   labels:
     app: {{ template "rathena.name" . }}
     chart: {{ template "rathena.chart" . }}
@@ -15,8 +16,31 @@ spec:
       port: {{ .service.port }}
       protocol: {{ .service.protocol }}
       targetPort: {{ .service.name }}
-      nodePort: null
     {{- end }}
   selector:
     app: {{ template "rathena.name" . }}
     release: {{ .Release.Name }}
+
+{{- range $key, $val := .Values.containers }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $key }}
+  labels:
+    app: {{ template "rathena.name" . }}
+    chart: {{ template "rathena.chart" . }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+spec:
+  type: {{ $.Values.service.type }}
+  ports:
+    - name: {{ .service.name }}
+      port: {{ .service.port }}
+      protocol: {{ .service.protocol }}
+      targetPort: {{ .service.name }}
+    {{- end }}
+  selector:
+    app: {{ template "rathena.name" . }}
+    release: {{ $.Release.Name }}
+{{- end }}

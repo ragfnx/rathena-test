@@ -1,27 +1,28 @@
+{{- range $key, $val := .Values.containers }}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "rathena.fullname" . }}
+  name: {{ $key }}
   labels:
     app: {{ template "rathena.name" . }}
     chart: {{ template "rathena.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ $.Values.replicaCount }}
   revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: {{ template "rathena.name" . }}
-      release: {{ .Release.Name }}
+      release: {{ $.Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "rathena.name" . }}
-        release: {{ .Release.Name }}
+        release: {{ $.Release.Name }}
     spec:
       containers:
-        {{- range $key, $val := .Values.containers }}
         - name: {{ $key }}
           image: "{{ $.Values.image.repository }}:{{ $.Chart.AppVersion }}"
           imagePullPolicy: {{ $.Values.image.pullPolicy }}
@@ -31,16 +32,16 @@ spec:
             - name: {{ .service.name }}
               containerPort: {{ .service.port }}
               protocol: {{ .service.protocol }}
-          #readinessProbe:
-          #  tcpSocket:
-          #    port: {{ .service.name }}
-          #  initialDelaySeconds: 40
-          #  periodSeconds: 50
-          #livenessProbe:
-          #  tcpSocket:
-          #    port: {{ .service.name }}
-          #  initialDelaySeconds: 60
-          #  periodSeconds: 70
+          readinessProbe:
+            tcpSocket:
+              port: {{ .service.name }}
+            initialDelaySeconds: 40
+            periodSeconds: 50
+          livenessProbe:
+            tcpSocket:
+              port: {{ .service.name }}
+            initialDelaySeconds: 60
+            periodSeconds: 70
           resources:
             requests:
               memory: {{ .resources.requests.memory }}
@@ -52,8 +53,8 @@ spec:
           - name: import
             mountPath: "/rathena/conf/import"
             readOnly: true
-        {{- end }}
       volumes:
       - name: import
         configMap:
           name: {{ template "rathena.fullname" . }}-configmap
+{{- end }}
