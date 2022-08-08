@@ -57,4 +57,3 @@ spec:
       - name: import
         configMap:
           name: rathena
-      restartPolicy: Never
