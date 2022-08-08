@@ -13,7 +13,7 @@ mariadb:
     persistence:
       size: 40Gi
 
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: nxxds/rathena
