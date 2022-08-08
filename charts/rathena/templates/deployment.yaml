@@ -31,16 +31,16 @@ spec:
             - name: {{ .service.name }}
               containerPort: {{ .service.port }}
               protocol: {{ .service.protocol }}
-          readinessProbe:
-            tcpSocket:
-              port: {{ .service.name }}
-            initialDelaySeconds: 40
-            periodSeconds: 50
-          livenessProbe:
-            tcpSocket:
-              port: {{ .service.name }}
-            initialDelaySeconds: 60
-            periodSeconds: 70
+          #readinessProbe:
+          #  tcpSocket:
+          #    port: {{ .service.name }}
+          #  initialDelaySeconds: 40
+          #  periodSeconds: 50
+          #livenessProbe:
+          #  tcpSocket:
+          #    port: {{ .service.name }}
+          #  initialDelaySeconds: 60
+          #  periodSeconds: 70
           resources:
             requests:
               memory: {{ .resources.requests.memory }}

@@ -10,18 +10,18 @@ data:
     //login_port: 
     //char_ip: 
     //char_port: 
-    bind_ip: rathena.rathena.svc.cluster.local
+    //bind_ip: rathena.rathena.svc.cluster.local
 
   login_conf.txt: |-
     //login_port: 
-    bind_ip: rathena.rathena.svc.cluster.local
+    //bind_ip: rathena.rathena.svc.cluster.local
 
   map_conf.txt: |-
     //char_ip: 
     //char_port: 
     //map_ip: 
     //map_port: 
-    bind_ip: rathena.rathena.svc.cluster.local
+    //bind_ip: rathena.rathena.svc.cluster.local
 
   inter_conf.txt: |-
     // MySQL Login server
