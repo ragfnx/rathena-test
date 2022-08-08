@@ -65,10 +65,10 @@ containers:
     resources:
       requests:
         memory: "512Mi"
-        cpu: "500m"
+        cpu: "300m"
       limits:
         memory: "1024Mi"
-        cpu: "500m"
+        cpu: "600m"
     envs:
       ENV_1: "value1"
 
