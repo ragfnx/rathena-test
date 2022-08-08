@@ -13,7 +13,7 @@ mariadb:
     persistence:
       size: 40Gi
 
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: nxxds/rathena
@@ -48,11 +48,11 @@ containers:
       protocol: TCP
     resources:
       requests:
+        memory: "128Mi"
+        cpu: "150m"
+      limits:
         memory: "256Mi"
         cpu: "300m"
-      limits:
-        memory: "512Mi"
-        cpu: "500m"
     envs:
       ENV_1: "value1"
 
@@ -68,7 +68,7 @@ containers:
         cpu: "500m"
       limits:
         memory: "1024Mi"
-        cpu: "1000m"
+        cpu: "500m"
     envs:
       ENV_1: "value1"
 
