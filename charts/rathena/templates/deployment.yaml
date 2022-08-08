@@ -5,8 +5,8 @@ kind: Deployment
 metadata:
   name: {{ $key }}
   labels:
-    app: {{ template "rathena.name" . }}
-    chart: {{ template "rathena.chart" . }}
+    app: {{ template "rathena.name" $ }}
+    chart: {{ template "rathena.chart" $ }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
 spec:
@@ -14,12 +14,12 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: {{ template "rathena.name" . }}
+      app: {{ template "rathena.name" $ }}
       release: {{ $.Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "rathena.name" . }}
+        app: {{ template "rathena.name" $ }}
         release: {{ $.Release.Name }}
     spec:
       containers:
@@ -56,5 +56,5 @@ spec:
       volumes:
       - name: import
         configMap:
-          name: {{ template "rathena.fullname" . }}-configmap
+          name: {{ template "rathena.fullname" $ }}-configmap
 {{- end }}

@@ -4,8 +4,8 @@ kind: Service
 metadata:
   name: game
   labels:
-    app: {{ template "rathena.name" . }}
-    chart: {{ template "rathena.chart" . }}
+    app: {{ template "rathena.name" $ }}
+    chart: {{ template "rathena.chart" $ }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -18,7 +18,7 @@ spec:
       targetPort: {{ .service.name }}
     {{- end }}
   selector:
-    app: {{ template "rathena.name" . }}
+    app: {{ template "rathena.name" $ }}
     release: {{ .Release.Name }}
 
 {{- range $key, $val := .Values.containers }}
@@ -28,8 +28,8 @@ kind: Service
 metadata:
   name: {{ $key }}
   labels:
-    app: {{ template "rathena.name" . }}
-    chart: {{ template "rathena.chart" . }}
+    app: {{ template "rathena.name" $ }}
+    chart: {{ template "rathena.chart" $ }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
 spec:
@@ -39,8 +39,7 @@ spec:
       port: {{ .service.port }}
       protocol: {{ .service.protocol }}
       targetPort: {{ .service.name }}
-    {{- end }}
   selector:
-    app: {{ template "rathena.name" . }}
+    app: {{ template "rathena.name" $ }}
     release: {{ $.Release.Name }}
 {{- end }}
