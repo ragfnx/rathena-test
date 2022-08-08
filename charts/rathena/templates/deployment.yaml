@@ -34,13 +34,13 @@ spec:
           readinessProbe:
             tcpSocket:
               port: {{ .service.name }}
-            initialDelaySeconds: 15
-            periodSeconds: 20
+            initialDelaySeconds: 40
+            periodSeconds: 50
           livenessProbe:
             tcpSocket:
               port: {{ .service.name }}
-            initialDelaySeconds: 25
-            periodSeconds: 30
+            initialDelaySeconds: 60
+            periodSeconds: 70
           resources:
             requests:
               memory: {{ .resources.requests.memory }}
