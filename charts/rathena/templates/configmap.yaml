@@ -13,6 +13,7 @@ data:
     //bind_ip: game.rathena.svc.cluster.local
 
   login_conf.txt: |-
+    new_account: yes
     login_port: 6900
     //bind_ip: game.rathena.svc.cluster.local
 
