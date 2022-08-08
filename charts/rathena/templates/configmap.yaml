@@ -10,19 +10,19 @@ data:
     login_port: 6900 
     char_ip: char-server.rathena.svc.cluster.local
     char_port: 6121
-    //bind_ip: game.rathena.svc.cluster.local
+    bind_ip: 45.76.164.78
 
   login_conf.txt: |-
     new_account: yes
     login_port: 6900
-    //bind_ip: game.rathena.svc.cluster.local
+    bind_ip: 45.76.164.78
 
   map_conf.txt: |-
     char_ip: char-server.rathena.svc.cluster.local
     char_port: 6121
     map_ip: map-server.rathena.svc.cluster.local
     map_port: 5121
-    //bind_ip: game.rathena.svc.cluster.local
+    bind_ip: 45.76.164.78
 
   inter_conf.txt: |-
     // MySQL Login server
